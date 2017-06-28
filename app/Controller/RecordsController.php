@@ -13,13 +13,13 @@ class RecordsController extends AppController {
 
     public function search($type = '') {
         $params = $this->request->query;
-        $this->set(compact('params'));
+        //$this->set(compact('params'));
         if (!empty($type) && !empty($params)) {
             $conditions = array();
             if ($type == 'advanced') {
                 $lat = Utility::orientation($params['latOrientation']) * Utility::coordinates($params['latDegrees'], $params['latMinutes'], $params['latSeconds']);
                 $lon = Utility::orientation($params['lonOrientation']) * Utility::coordinates($params['lonDegrees'], $params['lonMinutes'], $params['lonSeconds']);
-                $conditions = $this->Records->advancedsearchConditions($params['genus'], $params['species'], $params['fullname'], $params['collnum'], $params['locality'], $lat, $lon, doubleval(Utility::emptyToZero($params['range'])));
+                $conditions = $this->Records->advancedsearchConditions($params['genus'], $params['species'], $params['fullname'], $params['collnum'], $params['locality'], $lat, $lon, doubleval(Utility::emptyToZero($params['range'])), $params['country']);
             } else if ($type == 'quick') {
                 $conditions = $this->Records->quicksearchConditions($params['type'], $params['search-term']);
             }
@@ -39,6 +39,9 @@ class RecordsController extends AppController {
             $udajs = $this->Paginator->paginate('Udaj');
             $this->set(compact('udajs'));
         }
+        
+        $countries = $this->Brumit4->getList();
+        $this->set(compact('countries'));
     }
 
     public function view($id) {

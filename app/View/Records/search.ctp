@@ -1,11 +1,12 @@
 <?php
 $is_udajs = isset($udajs) && !empty($udajs);
+
 ?>
 
 <div class="collapse <?php echo!$is_udajs ? 'in' : ''; ?>" id="collapse-filter">
     <div class="panel panel-default">
         <div class="panel-body">
-            <?php echo $this->element('filter'); ?>
+            <?php echo $this->element('filter', array('countries' => $countries)); ?>
         </div>
     </div>
 </div>
@@ -80,5 +81,4 @@ if ($is_udajs):
 endif;
 
 //new dBug($udajs);
-
 //echo $this->element('sql_dump');

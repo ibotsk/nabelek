@@ -20,4 +20,12 @@ class Brumit4 extends AppModel {
         )
     );
     
+    public function getList() {
+        return $this->find('list', array(
+            'fields' => array('Brumit4.id', 'Brumit4.meno'),
+            'recursive' => 0
+            )
+                );
+    }
+    
 }

@@ -123,7 +123,7 @@ class RecordsComponent extends Component {
         return $conditions;
     }
 
-    public function advancedsearchConditions($genus, $species, $full, $collnum, $locality, $lat, $lon, $range) {
+    public function advancedsearchConditions($genus, $species, $full, $collnum, $locality, $lat, $lon, $range, $country) {
         if (!empty($lat) && !is_numeric($lat)) {
             throw new InvalidArgumentException('Latitude is not a number');
         }
@@ -170,6 +170,13 @@ class RecordsComponent extends Component {
             $conditions['Lokality.latitude >='] = $lat - $range;
             $conditions['Lokality.longitude >='] = $lon - $range;
             $conditions['Lokality.longitude <='] = $lon + $range;
+        }
+        if (!empty($country)) {
+            if ($country == 999) { //palestine
+                $conditions[] = array('OR' => array('Lokality.id_brumit4' => 459, 'Lokality.id_brumit4' => 460));
+            } else {
+                $conditions['Lokality.id_brumit4'] = $country;
+            }
         }
         return $conditions;
     }

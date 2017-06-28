@@ -1,5 +1,13 @@
-
 <?php
+
+$countriesOpts = array();
+
+if (isset($countries) && !empty($countries)) {
+    $countriesOpts = $countries;
+    $countriesOpts[999] = 'Palestine';
+    asort($countriesOpts);
+}
+
 $query = $this->params->query;
 echo $this->Form->create('FilterAdv', array('type' => 'get', 'url' => array('controller' => 'records', 'action' => 'search', 'advanced'),
     'role' => 'form', 'inputDefaults' => array('label' => false, 'div' => false)));
@@ -27,6 +35,10 @@ echo $this->Form->create('FilterAdv', array('type' => 'get', 'url' => array('con
         <div class="form-group">
             <?php echo $this->Form->label('collnum', 'Collection number: <a href="" data-toggle="tooltip" title="Collection number as referred to in the Iter Turcico-Persicum">?</a>', array('class' => 'control-label')); ?>
             <?php echo $this->Form->input('collnum', array('type' => 'text', 'class' => 'form-control', 'value' => isset($query['collnum']) ? $query['collnum'] : '')); ?>
+        </div>
+        <div class="form-group">
+            <?php echo $this->Form->label('country', 'Country: <a href="" data-toggle="tooltip" title="">?</a>', array('class' => 'control-label')); ?>
+            <?php echo $this->Form->input('country', array('class' => 'form-control', 'empty' => array(0 => ''), 'options' => $countriesOpts, 'selected' => isset($query['country']) ? $query['country'] : 0)); ?>
         </div>
     </div>
     <div class="col-md-4">
