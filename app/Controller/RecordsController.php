@@ -39,9 +39,23 @@ class RecordsController extends AppController {
             $udajs = $this->Paginator->paginate('Udaj');
             $this->set(compact('udajs'));
         }
+                
+        //------ hardcoded countries -----------
+        /*
+         * 198 = Bahrain
+         * 283 = Iran
+         * 284 = Iraq
+         * 459 = Israel
+         * 460 = Jordan
+         * 316 = Lebanon
+         * 317 = Syria
+         * 554 = Turkey
+         */
+        $ids = array(198, 283, 284, 459, 460, 316, 317, 554);
+        //--------------------------------------
         
-        $countries = $this->Brumit4->getList();
-        $this->set(compact('countries'));
+        $countries = $this->Brumit4->getList($ids);
+        $this->set(compact('countries', 'udajs'));
     }
 
     public function view($id) {
