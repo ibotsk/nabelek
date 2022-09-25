@@ -38,8 +38,8 @@
         echo $this->Html->script('jquery-1.11.3.min.js');
         echo $this->Html->script('bootstrap.min');
         echo $this->Html->script('https://maps.googleapis.com/maps/api/js?key=AIzaSyAPfXxTTVEBVoV7WmUbET8qsQxr16-v6lE');
-        echo $this->Html->script('http://malsup.github.com/jquery.cycle2.js');
-        echo $this->Html->script('http://malsup.github.com/jquery.cycle2.center.js');
+        echo $this->Html->script('jquery.cycle2.js');
+        echo $this->Html->script('jquery.cycle2.center.js');
         echo $this->Html->script('lightbox');
         echo $this->Html->script('comments');
         echo $this->Html->script('main');
